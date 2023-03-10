@@ -1,0 +1,218 @@
+﻿@{
+    Layout = null;
+}
+<html>
+<head>
+    <link rel="icon" href="~/favicon.ico" />
+    <link href="~/Content/css/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/css/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <link href="~/Content/css/site.css" rel="stylesheet" />
+    <link href="~/Content/frontawsome/css/all.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <title>Home-Fashion7</title>
+
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-lg sticky-lg-top text-white bg-black bg-opacity-75">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/Home/Index">f7</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg">
+                    <li class="nav-item ">
+                        <a class="nav-link active nav-hover" aria-current="page" href="/Home">TRANG CHỦ</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle active nav-hover" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">CỬA HÀNG</a>
+                        <div class="dropdown-menu bg-black bg-opacity-75">
+                            <a class="dropdown-item text-white dropdown-hover" href="/Products">Sản phẩm</a>
+                            <a class="dropdown-item text-white dropdown-hover" href="/Products/Sale">Sale</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active nav-hover" href="#">GIỚI THIỆU</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active nav-hover" href="#">DỊCH VỤ</a>
+                    </li>
+                </ul>
+
+            </div>
+            <div class="nav-login">
+                <span><a class="mx-3 d-inline-block" href="/ShoppingCart/ShowToCart"><i <i class="fa-solid fa-cart-shopping"></i></i></a></span>
+                @if (Session["Taikhoan"] != null)
+                {
+                    <span><a class="mx-3 d-inline-block" href="/User/InfoUser"><i> <i class="fa-solid fa-user"></i></i></a></span>
+                    <span><a class="nav-item d-inline-block nav-login-text mt-3" href="/User/Dangxuat">Đăng Xuất</a></span>
+                }
+                else
+                {
+                    <span><a class="mx-3 d-inline-block" href="/User/InfoUser"><i> <i class="fa-solid fa-user"></i></i></a></span>
+                }
+
+
+            </div>
+
+        </div>
+    </nav>
+
+    <header>
+
+        <div class="video-container mw-100">
+
+            <video id="intro-video" autoplay="autoplay" loop="loop" muted="muted" class=" w-100 h-auto opacity-75 "> <source src="~/Content/video/banner-video.mp4" type="video/mp4" /> </video>
+
+            <a href="/Products"><button class="btn btn-dark d-inline-block">MUA NGAY <i class="bi bi-arrow-right"></i> </button></a>
+
+        </div>
+    </header>
+</head>
+
+<body>
+    <div class="product-type-container align-content-center">
+        <div class="row text-center">
+            <div class="col bg-light bg-opacity-75" style="padding-bottom:100px; padding-top:100px;">
+                <div>
+                    <img class="w-75" src="~/Content/Images/tee.png" />
+                </div>
+                <div>
+                    <h1 class="pb-4">TOP</h1>
+                </div>
+                <div>
+                    <a href="/products/top"><button class=" btn btn-dark d-inline-block">XEM THÊM</button></a>
+                </div>
+            </div>
+            <div class="col bg-light bg-opacity-75" style="padding-bottom:100px; padding-top:100px;">
+                <div>
+                    <img class="w-75" src="~/Content/Images/pant.png" />
+                </div>
+                <div>
+                    <h1 class="pb-4">BOTTOM</h1>
+                </div>
+                <div>
+                    <a href="/products/bottom"><button class="btn btn-dark d-inline-block">XEM THÊM</button></a>
+                </div>
+            </div>
+            <div class="col bg-light bg-opacity-75" style="padding-bottom:100px; padding-top:100px;">
+                <div>
+                    <img class="w-75" src="~/Content/Images/back.png" />
+                </div>
+                <div>
+                    <h1 class="pb-4">ACCESSORIES</h1>
+                </div>
+                <div>
+                    <a href="/products/accessories"><button class="btn btn-dark d-inline-block">XEM THÊM</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="feedback-container container">
+        <div class="row">
+            <div class="col">
+                <img class="feedback-img" src="~/Content/Images/feeback.png" />
+            </div>
+            <div class="col feedback-text">
+                <h2 class="mt-5">
+                    Trải nghiệm mua sắm hài lòng với #f7
+                </h2>
+                <p class="mt-5">Giá cả hợp lý</p>
+                <p>Dịch vụ 100% hài lòng</p>
+                <p>60 ngày đổi trả</p>
+                <p>Sản xuất tại Việt Nam</p>
+            </div>
+        </div>
+    </div>
+    <div class="footer-container">
+        <img class="mw-100 h-auto" src="./Images/footer.jpeg" />
+    </div>
+    <footer class="bg-black text-white">
+        <footer class="bg-light text-center text-lg-start">
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: #212529; ">
+                <section class="">
+                    <div class="container text-center text-md-start mt-5">
+                        <!-- Grid row -->
+                        <div class="row mt-3">
+                            <!-- Grid column -->
+                            <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+                                <!-- Content -->
+                                <h6 class="text-uppercase fw-bold">Về Fashion 7</h6>
+                                <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                                    style="width: 60px; background-color: #7c4dff; height: 2px" />
+                                <p>
+                                    Tại Fashion 7, mỗi sản phẩm đều mang theo sự cá tính và sành điệu, đại diện cho hình ảnh giới trẻ
+                                    hiện đại - biểu tượng cho sự dẫn đầu phong cách thời đại mới.
+                                </p>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+                                <!-- Links -->
+                                <h6 class="text-uppercase fw-bold">Sản Phẩm</h6>
+                                <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                                    style="width: 60px; background-color: #7c4dff; height: 2px" />
+                                <p>
+                                    <a href="/products/top" class="text-white" style="text-decoration:none;">Top</a>
+                                </p>
+                                <p>
+                                    <a href="/products/bottom" class="text-white" style="text-decoration:none;">Bottom</a>
+                                </p>
+                                <p>
+                                    <a href="/products/accessories" class="text-white" style="text-decoration:none;">Accessories</a>
+                                </p>
+                                <p>
+                                    <a href="/Products" class="text-white" style="text-decoration:none;">All</a>
+                                </p>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+                                <!-- Links -->
+                                <h6 class="text-uppercase fw-bold">Hỗ trợ</h6>
+                                <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                                    style="width: 60px; background-color: #7c4dff; height: 2px" />
+                                <p>
+                                    <a href="#!" class="text-white " style="text-decoration:none;">Tài khoản</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-white" style="text-decoration:none;">Chính sách bảo hành</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-white" style="text-decoration:none;">Chính sách vận chuyển</a>
+                                </p>
+                                <p>
+                                    <a href="#!" class="text-white" style="text-decoration:none;">Thanh toán online</a>
+                                </p>
+                            </div>
+                            <!-- Grid column -->
+                            <!-- Grid column -->
+                            <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+                                <!-- Links -->
+                                <h6 class="text-uppercase fw-bold">Liên hệ</h6>
+                                <hr class="mb-4 mt-0 d-inline-block mx-auto"
+                                    style="width: 60px; background-color: #7c4dff; height: 2px" />
+                                <p><i class="fa-solid fa-house"></i> Khu E, Đại học HUTECH</p>
+                                <p><i class="fa-sharp fa-solid fa-envelope"></i>  Fashion7@gmail.com</p>
+                                <p><i class="fa-sharp fa-solid fa-phone"></i>  01 234 567 88</p>
+                                <p><i class="fa-solid fa-clock"></i> Mon - Sun | 09:30 ~ 21:30</p>
+                            </div>
+                            <!-- Grid column -->
+                        </div>
+                        <!-- Grid row -->
+                    </div>
+                </section>
+                © 2022 Copyright:
+                <a class="text-white" href="#" style="text-decoration:none;">Fashion 7</a>
+            </div>
+            <!-- Copyright -->
+        </footer>
+
+</body>
+</html>

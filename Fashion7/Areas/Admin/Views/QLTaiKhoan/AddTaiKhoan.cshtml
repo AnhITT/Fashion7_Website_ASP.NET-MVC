@@ -1,0 +1,154 @@
+﻿@model Fashion7.Models.TaiKhoan
+
+@{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item h5"><a href="QLTaiKhoanAdmin"><i class="uil-users-alt"></i> Tài khoản hệ thống</a></li>
+            <li class="breadcrumb-item h5">Thêm tài khoản</li>
+        </ol>
+    </nav>
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHeaderBar.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+
+
+    <meta name="viewport" content="width=device-width" />
+    <title>Thêm tài khoản</title>
+</head>
+<body>
+    <section class="bg-image"
+      <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" style="border-radius: 15px;">
+                  <div class="card-body p-5">
+                      <h2 class="text-uppercase text-center ">Thêm tài khoản</h2>
+                      @using (Html.BeginForm())
+                      {
+                          @Html.ValidationSummary(true)
+                          <div>
+                              Họ tên
+                              <input type="text" name="HoTen" class="form-control" placeholder="Nhập họ tên">
+                              <span class="text-danger">
+                                  @ViewData["Loi1"]
+                              </span>
+                          </div>
+
+                          <div>
+                              Tên đăng nhập
+                              <input type="text" name="TenDN" class="form-control" placeholder="Nhập tên đăng nhập">
+                              <span class="text-danger">
+                                  @ViewData["Loi2"]
+                                  @ViewData["LoiTrungTK"]
+                              </span>
+                          </div>
+
+                          <div>
+                              Mật khẩu
+                              <input type="password" name="Matkhau" class="form-control" placeholder="Nhập mật khẩu">
+                              <span class="text-danger">
+                                  @ViewData["Loi3"]
+                              </span>
+                          </div>
+
+                          <div>
+                              Nhập lại mật khẩu
+                              <input type="password" name="Matkhau2" class="form-control" placeholder="Nhập lại mật khẩu">
+                              <span class="text-danger">
+                                  @ViewData["Loi4"]
+                                  @ViewData["Loimk2"]
+                              </span>
+                          </div>
+
+                          <div class="mt-1">
+                              Giới tính:
+                              Nam
+                              @Html.RadioButtonFor(model => model.gioiTinh, "Nam", true)
+                              Nữ
+                              @Html.RadioButtonFor(model => model.gioiTinh, "Nữ", false)
+                              Khác
+                              @Html.RadioButtonFor(model => model.gioiTinh, "Khác", null)
+                              <span class="text-danger">
+                                  @ViewData["Loi11"]
+                              </span>
+
+                          </div>
+                          <div class="mt-1">
+                              Ngày sinh
+                              <input type="date" name="NgaySinh" class="ml-3" />
+                          </div>
+                          <div>
+                              Địa chỉ
+                              <input type="text" name="DiaChi" class="form-control" placeholder="Nhập địa chỉ">
+                              <span class="text-danger">
+                                  @ViewData["Loi5"]
+                              </span>
+                          </div>
+
+                          <div>
+                              Email
+                              <input type="email" name="Email" class="form-control" placeholder="Nhập email">
+                              <span class="text-danger">
+                                  @ViewData["Loi6"]
+                              </span>
+                          </div>
+                          
+                          <div>
+                              Số điện thoại
+                              <input type="text" name="SDT" class="form-control" placeholder="Nhập số điện thoại">
+                              <span class="text-danger">
+                                  @ViewData["Loi7"]
+                              </span>
+
+                          </div>
+                          <div>
+                              Chức vụ
+                              <input type="text" name="ChucVu" class="form-control" placeholder="Nhập chức vụ">
+                              <span class="text-danger">
+                                  @ViewData["Loi8"]
+                              </span>
+
+                          </div>
+                          <div>
+                              Lương
+                              <input type="text" name="Luong" class="form-control" placeholder="Nhập lương">
+                              <span class="text-danger">
+                                  @ViewData["Loi12"]
+                                  @ViewData["Loi9"]
+                              </span>
+
+                          </div>
+                          <div class="mt-2 mb-2">
+                              Phân quyền
+                              @Html.DropDownList("MaQuyen")
+                              <span class="text-danger">
+                                  @ViewData["Loi10"]
+                              </span>
+
+                          </div>
+
+                          <div class="d-flex justify-content-center align-items-center">
+                              <a class="btn btn-dark" href="QLTaiKhoanAdmin"><i class="fa-solid fa-chevron-left"></i> Quay lại</a>
+                              <input type="submit" value="Thêm tài khoản" class="btn btn-success m-3" />
+                          </div>
+                      }
+
+                  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
+
+

@@ -1,0 +1,101 @@
+﻿@model Fashion7.Models.SanPham
+
+@{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item h5"><a href="../QLSanPham"><i class="uil-cart"></i> Quản lý sản phẩm</a></li>
+            <li class="breadcrumb-item h5">Sửa thông tin sản phẩm</li>
+        </ol>
+    </nav>
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHeaderBar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditProduct</title>
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+   
+    <script src="~/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+</head>
+<body>
+    <section class="bg-image" <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-5">
+                  <h2 class="text-uppercase text-center ">SỬA THÔNG TIN SẢN PHẨM</h2>
+                  @using (Html.BeginForm())
+                  {
+                      @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                      <div>
+                          Mã Sản Phẩm @Model.idSP
+                      </div>
+                      <div class="mt-2">
+                          Tên Sản Phẩm
+                          @Html.EditorFor(model => model.tenSP, new { htmlAttributes = new { @class = "form-control" } })
+                          @Html.ValidationMessageFor(model => model.tenSP, "", new { @class = "text-danger" })
+                      </div>
+                      <div class="mt-2">
+                          Giá Sản Phẩm
+                          @Html.EditorFor(model => model.giaSP, new { htmlAttributes = new { @class = "form-control" } })
+                          @Html.ValidationMessageFor(model => model.giaSP, "", new { @class = "text-danger" })
+                      </div>
+                      <div class="mt-2">
+                          Số Lượng Sản Phẩm
+                          @Html.EditorFor(model => model.soLuongSP, new { htmlAttributes = new { @class = "form-control" } })
+                          @Html.ValidationMessageFor(model => model.soLuongSP, "", new { @class = "text-danger" })
+                      </div>
+                      <div class="mt-2">
+                          Link Ảnh Sản Phẩm
+                          @Html.EditorFor(model => model.hinhAnhSP, new { htmlAttributes = new { @class = "form-control" } })
+                          @Html.ValidationMessageFor(model => model.hinhAnhSP, "", new { @class = "text-danger" })
+                      </div>
+                      <div class="mt-2">
+                          Thông Tin Sản Phẩm
+                          <br />
+                          <textarea name="thongtinSP">@Model.thongTinSP</textarea>
+                      </div>
+                      <div class="mt-2 mb-2">
+                          Tình trạng
+                          <select class="select m-lg-2" name="status1">
+                              <option>Đang bán</option>
+                              <option>Tạm ngưng</option>
+                              <option>Chưa bán</option>
+                          </select>
+                      </div>
+                      <div>
+                          Danh mục
+                          <span class="m-lg-2">@Html.DropDownList("idDM")</span>
+                      </div>
+                      <div class="mt-2">
+                          Khuyến mãi
+                          @Html.DropDownList("idKM")
+                      </div>
+                      <div class="d-flex justify-content-center align-items-center">
+                          <a class="btn btn-dark" href="../QLSanPham">
+                              <i class="fa-solid fa-chevron-left"></i> Quay lại
+                          </a>
+                          <input type="submit" value="Lưu thông tin" class="btn btn-success m-3" />
+                      </div>
+                  }
+
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+</body>
+
+</html>
+
+

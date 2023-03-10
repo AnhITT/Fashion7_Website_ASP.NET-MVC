@@ -1,0 +1,89 @@
+﻿@model Fashion7.Models.KhuyenMai
+
+@{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item h5"><a href="../QLSale"><i class="uil-dollar-sign-alt"></i> Quản lý sale</a></li>
+            <li class="breadcrumb-item h5">Xoá khuyến mãi</li>
+        </ol>
+    </nav>
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHeaderBar.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+   
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width" />
+   
+    <title>DelKM</title>
+ 
+</head>
+<body>
+    <section class="bg-image" <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+                <h2 class="text-uppercase text-center ">xác nhận xoá khuyến mãi</h2>
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+                    <div>
+                        <b>Mã khuyến mãi:</b>
+                        @Html.DisplayFor(model => model.idKM)
+
+                    </div>
+                    <div>
+                        <b>Tên khuyến mãi:</b>
+                        @Html.DisplayFor(model => model.tenKM)
+
+                    </div>
+                    <div>
+                        <b>Thông tin khuyến mãi:</b>
+                        @Html.DisplayFor(model => model.moTaKM)
+                    </div>
+                    <div>
+                        <b>Số lượng khuyến mãi:</b>
+                        @Html.DisplayFor(model => model.soLuong)
+                    </div>
+                    <div>
+                        <b>Giá giảm:</b>
+                        @Html.DisplayFor(model => model.donGia)
+                    </div>
+                    <div>
+                        <b>Ngày bắt đầu:</b>
+                        @String.Format("{0:dd/MM/yyyy}", Model.dateStart)
+                    </div>
+                    <div>
+                        <b>Ngày kết thúc:</b>
+                        @String.Format("{0:dd/MM/yyyy}", Model.dateEnd)
+                    </div>
+                    <div>
+                        <b>Chiết khấu:</b>
+                        @Html.DisplayFor(model => model.chietKhau)
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <a class="btn btn-dark" href="../QLSale"><i class="fa-solid fa-chevron-left"></i> Quay lại</a>
+                        <input type="submit" value="Xoá khuyến mãi" class="btn btn-danger m-3" />
+                    </div>
+                }
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+</body>
+
+</html>
+
+
+

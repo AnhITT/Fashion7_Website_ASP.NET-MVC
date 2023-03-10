@@ -1,0 +1,167 @@
+﻿@model Fashion7.Models.Cart
+@using Fashion7.Models;
+@{
+    ViewBag.Title = "ShowToCart";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<html>
+<div class="row text-light text-center mt-5 mb-4">
+    <link href="~/Content/frontawsome/css/all.css" rel="stylesheet" />
+    <link href="~/Content/frontawsome/css/fontawesome.css" rel="stylesheet" />
+    <script src="~/Content/frontawsome/js/fontawesome.js"></script>
+    <script src="~/Content/frontawsome/js/all.js"></script>
+    <h1 style="font-weight:bold !important; font-size:50px;color:black;padding:10px">GIỎ HÀNG</h1>
+
+    @if (Model != null)
+    {
+       
+         
+          
+            <section class="h-100 h-custom" style="background-color: white;">
+                <div class="container h-100 py-5">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col">
+                            <div class="card shopping-cart" style="border-radius: 15px;">
+                                <div class="card-body text-black">
+
+                                    <div class="row">
+                                        <div class="col-lg-6 px-5 py-4">
+
+                                            <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">Sản phẩm của bạn</h3>
+                                            @foreach (var item in Model.Items)
+                                            {
+                                                <div class="d-flex align-items-center mb-5">
+                                                    <div class="flex-shrink-0">
+                                                        <img src="@item._shopping_product.hinhAnhSP"
+                                                             class="img-fluid" style="width: 150px;" alt="Generic placeholder image">
+                                                    </div>
+                                                    <div class="flex-grow-1 ms-3">
+                                                        <a href="/ShoppingCart/RemoveCart/@item._shopping_product.idSP" class="float-end text-black"><i class="fas fa-times"></i></a>
+                                                        <h5 class="text-primary">@item._shopping_product.tenSP</h5>
+                                                        <h6 style="color: #9e9e9e;">SKU: @item._shopping_product.idSP</h6>
+                                                        <div class="d-flex align-items-center">
+                                                            <p class="fw-bold mb-0 me-5 pe-3">@String.Format("{0:0,0}", item._shopping_product.giaSP)VNĐ</p>
+
+                                                            <div class="def-number-input number-input safari_only mt-2">
+                                                                @using (Html.BeginForm("Update_Quantity_Cart", "ShoppingCart"))
+                                                                {
+                                                                    <input size="4" type="hidden" value="@item._shopping_product.idSP" name="ID_Product" />
+                                                                    <input class="btn btn-outline-dark" style="width:70px!important;" size="3" type="number" value="@item._shopping_quantity" name="Quantity" />
+                                                                    <input class="btn btn-primary" size="3" type="submit" value="Cập nhật" />
+
+                                                                }
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    </div>
+                                                </div>
+                                            }
+
+
+
+
+                                            <hr class="mb-4" style="height: 1px; background-color: #1266f1; opacity: 1;">
+
+                                            <div class="d-flex justify-content-between px-x">
+                                                <p class="fw-bold">Discount:</p>
+                                                <p class="fw-bold"> @String.Format("{0:0,0}", ViewBag.sale) VNĐ</p>
+                                            </div>
+                                            <div class="d-flex justify-content-between p-2 mb-2" style="background-color: whitesmoke;">
+                                                <h5 class="fw-bold mb-0">Total:</h5>
+                                                <h5 class="fw-semibold mb-0">
+                                                    @String.Format("{0:0,0}", @Model.Items.Sum(x => x._shopping_product.giaSP * x._shopping_quantity) - ViewBag.sale) VNĐ
+                                                   
+                                                </h5>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-lg-6 px-5 py-4">
+
+                                            <h3 class="mb-5 pt-2 text-center fw-bold text-uppercase">THÔNG TIN ĐẶT HÀNG</h3>
+
+
+                                            @using (Html.BeginForm())
+                                            {
+                                                <form class="mb-5" novalidate>
+
+                                                    @if (Session["Taikhoan"] != null)
+                                                    {
+                                                        <div class="form-outline">
+                                                            <label class="form-label float-start" for="name">Họ và tên</label>
+                                                            <input value="@((Session["Taikhoan"] as TaiKhoan).ten)" type="text" name="ten" id="name" class="form-control" />
+                                                        </div>
+                                                        <div class="form-outline mt-4">
+                                                            <label class="form-label float-start" for="typePhone">Số điện thoại</label>
+                                                            <input value="@((Session["Taikhoan"] as TaiKhoan).sdt)" type="tel" name="sdt" id="typePhone" class="form-control" />
+
+                                                        </div>
+                                                        <div class="form-outline mt-4">
+                                                            <label class="form-label float-start" for="typeEmail">Email</label>
+                                                            <input value="@((Session["Taikhoan"] as TaiKhoan).email)" type="email" name="email" id="typeEmail" class="form-control" />
+
+                                                        </div>
+                                                        <div class="form-outline mt-4">
+                                                            <label class="form-label float-start" for="name">Địa chỉ</label>
+                                                            <input value="@((Session["Taikhoan"] as TaiKhoan).diaChi)" type="text" name="diaChi" id="address" class="form-control" />
+                                                        </div>
+                                                        <div class="form-outline mt-4">
+                                                            <label class="form-label float-start" for="textAreaExample">Ghi chú</label>
+                                                            <textarea class="form-control" id="textAreaExample" name="ghiChu" rows="4"></textarea>
+
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        {
+                                                            <div class="form-outline">
+                                                                <label class="form-label float-start" for="name">Full name</label>
+                                                                <input value="" type="text" id="name" name="ten" class="form-control" />
+                                                            </div>
+                                                            <div class="form-outline mt-4">
+                                                                <label class="form-label float-start" for="typePhone">Phone number</label>
+                                                                <input value="" type="tel" id="typePhone" name="sdt" class="form-control" />
+
+                                                            </div>
+                                                            <div class="form-outline mt-4">
+                                                                <label class="form-label float-start" for="typeEmail">Email input</label>
+                                                                <input value="" type="email" id="typeEmail" name="email" class="form-control" />
+
+                                                            </div>
+                                                            <div class="form-outline mt-4">
+                                                                <label class="form-label float-start" for="name">Address</label>
+                                                                <input value="" type="text" id="address" name="diaChi" class="form-control" />
+                                                            </div>
+                                                            <div class="form-outline mt-4">
+                                                                <label class="form-label float-start" for="textAreaExample">Ghi chú</label>
+                                                                <textarea class="form-control" id="textAreaExample" name="ghiChu" rows="4"></textarea>
+
+                                                            </div>
+                                                        }
+                                                    }
+                                                    <div class="mt-3">
+
+                                                        <input src="" class="btn btn-primary" type="submit" value="Tiến hành thanh toán" />
+                                                    </div>
+                                                </form>
+                                            }
+                                            </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+       
+        <style>
+            body {
+                background-color: white !important;
+                background-image: none !important;
+            }
+            a{
+                text-decoration: none!important;
+            }
+        </style>
+    }
+</html>

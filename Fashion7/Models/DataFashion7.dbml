@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="Fashion7" Class="DataFashion7DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ANH07\SQLEXPRESS;Initial Catalog=Fashion7;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="Fashion7ConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.BinhLuan" Member="BinhLuans">
+    <Type Name="BinhLuan">
+      <Column Name="idBL" Type="System.String" DbType="Char(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ngayBL" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="noiDungBL" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="idSP" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Association Name="SanPham_BinhLuan" Member="SanPham" ThisKey="idSP" OtherKey="idSP" Type="SanPham" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CTThanhToan" Member="CTThanhToans">
+    <Type Name="CTThanhToan">
+      <Column Name="idThanhToan" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="soLuongSP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="idSP" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="giaSP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="stt" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Association Name="SanPham_CTThanhToan" Member="SanPham" ThisKey="idSP" OtherKey="idSP" Type="SanPham" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="ThanhToan_CTThanhToan" Member="ThanhToan" ThisKey="idThanhToan" OtherKey="iDThanhToan" Type="ThanhToan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DanhMuc" Member="DanhMucs">
+    <Type Name="DanhMuc">
+      <Column Name="idDM" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenDM" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="DanhMuc_SanPham" Member="SanPhams" ThisKey="idDM" OtherKey="idDanhMuc" Type="SanPham" />
+    </Type>
+  </Table>
+  <Table Name="dbo.KhuyenMai" Member="KhuyenMais">
+    <Type Name="KhuyenMai">
+      <Column Name="idKM" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenKM" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="moTaKM" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="soLuong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="donGia" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="dateStart" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="dateEnd" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="chietKhau" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Association Name="KhuyenMai_SanPham" Member="SanPhams" ThisKey="idKM" OtherKey="sale" Type="SanPham" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PhanQuyen" Member="PhanQuyens">
+    <Type Name="PhanQuyen">
+      <Column Name="maQuyen" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenQuyen" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="PhanQuyen_TaiKhoan" Member="TaiKhoans" ThisKey="maQuyen" OtherKey="maQuyen" Type="TaiKhoan" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SanPham" Member="SanPhams">
+    <Type Name="SanPham">
+      <Column Name="idSP" Type="System.String" DbType="NVarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="tenSP" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="giaSP" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="soLuongSP" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="hinhAnhSP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="thongTinSP" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ngayCapNhat" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="idDanhMuc" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="sale" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Association Name="SanPham_BinhLuan" Member="BinhLuans" ThisKey="idSP" OtherKey="idSP" Type="BinhLuan" />
+      <Association Name="SanPham_CTThanhToan" Member="CTThanhToans" ThisKey="idSP" OtherKey="idSP" Type="CTThanhToan" />
+      <Association Name="DanhMuc_SanPham" Member="DanhMuc" ThisKey="idDanhMuc" OtherKey="idDM" Type="DanhMuc" IsForeignKey="true" DeleteRule="SET NULL" />
+      <Association Name="KhuyenMai_SanPham" Member="KhuyenMai" ThisKey="sale" OtherKey="idKM" Type="KhuyenMai" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TaiKhoan" Member="TaiKhoans">
+    <Type Name="TaiKhoan">
+      <Column Name="taiKhoan" Member="taiKhoan1" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="matKhau" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="ten" Type="System.String" DbType="NVarChar(36) NOT NULL" CanBeNull="false" />
+      <Column Name="gioiTinh" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ngaySinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="sdt" Type="System.String" DbType="Char(10)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="diaChi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="maQuyen" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
+      <Association Name="TaiKhoan_TaiKhoanAdmin" Member="TaiKhoanAdmin" ThisKey="taiKhoan1" OtherKey="taiKhoan" Type="TaiKhoanAdmin" Cardinality="One" />
+      <Association Name="TaiKhoan_ThanhToan" Member="ThanhToans" ThisKey="taiKhoan1" OtherKey="taiKhoan" Type="ThanhToan" />
+      <Association Name="PhanQuyen_TaiKhoan" Member="PhanQuyen" ThisKey="maQuyen" OtherKey="maQuyen" Type="PhanQuyen" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TaiKhoanAdmin" Member="TaiKhoanAdmins">
+    <Type Name="TaiKhoanAdmin">
+      <Column Name="taiKhoan" Type="System.String" DbType="VarChar(30) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="chucVu" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="luong" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Association Name="TaiKhoan_TaiKhoanAdmin" Member="TaiKhoan1" ThisKey="taiKhoan" OtherKey="taiKhoan1" Type="TaiKhoan" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ThanhToan" Member="ThanhToans">
+    <Type Name="ThanhToan">
+      <Column Name="iDThanhToan" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ngayThanhToan" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="taiKhoan" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="tongTien" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="ghiChu" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="hoTen" Type="System.String" DbType="NVarChar(70)" CanBeNull="true" />
+      <Column Name="sdt" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="email" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="diaChi" Type="System.String" DbType="NVarChar(300)" CanBeNull="true" />
+      <Column Name="status" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="giamGia" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Association Name="ThanhToan_CTThanhToan" Member="CTThanhToans" ThisKey="iDThanhToan" OtherKey="idThanhToan" Type="CTThanhToan" />
+      <Association Name="TaiKhoan_ThanhToan" Member="TaiKhoan1" ThisKey="taiKhoan" OtherKey="taiKhoan1" Type="TaiKhoan" IsForeignKey="true" DeleteRule="SET NULL" />
+    </Type>
+  </Table>
+</Database>

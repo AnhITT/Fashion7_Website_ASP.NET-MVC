@@ -1,0 +1,194 @@
+﻿@using Fashion7.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Fashion7.Models.SanPham>
+
+
+@helper Truncate(string input, int length)
+{
+
+    if (input == null)
+    {
+        @input
+    }
+    else if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length) <text> ...</text>
+    }
+}
+@{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active" aria-current="page"><h5><i class="uil-cart"></i> Quản lý sản phẩm</h5></li>
+        </ol>
+    </nav>
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHeaderBar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>QLProducts</title>
+
+    <link href="~/Content/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/frontawsome/css/all.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="input-group mb-2">
+        <a class="fw-bolder" href="AddSanPham">THÊM SẢN PHẨM <i class="fa-solid fa-plus-circle"></i></a>
+
+        <div class="ms-auto mb-lg-0">
+            <input type="text" id="myInput" class="form-control " placeholder="Tìm kiếm sản phẩm">
+        </div>
+    </div>
+        <a href="@Url.Action("ExportExcelSP")"><i class="fa-solid fa-file-excel"></i> Export Excel</a>
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>
+                    Danh Mục
+                </th>
+                <th>
+                    Tên Sản Phẩm
+                </th>
+                <th>
+                    Giá Sản Phẩm
+                </th>
+                <th>
+                    Số Lượng Tồn
+                </th>
+                <th>
+                    Hình Ảnh Sản Phẩm
+                </th>
+                
+                <th>
+                    Tình Trạng
+                </th>
+                <th>
+                    Chỉnh Sửa
+                </th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+
+            @foreach (var item in Model)
+            {
+                <tr id="mytable">
+                    <td>
+                        @if (item.idDanhMuc == null)
+                        {
+                            <p></p>
+                        }
+                        else
+                        {
+                            @item.DanhMuc.tenDM
+                        }
+                    </td>
+                    <td>
+                        @item.tenSP
+                    </td>
+                    <td>
+                        @String.Format("{0:0,0}", @item.giaSP) VNĐ
+                    </td>
+                    <td>
+                        @item.soLuongSP
+                    </td>
+                    <td>
+                        <img style="width:140px;" src="@item.hinhAnhSP" />
+                    </td>
+                    
+                    <td>
+                        @if (item.status == true)
+                        {
+                            <span class="badge bg-success">@ViewBag.dangBan</span>
+                        }
+                        else if (item.status == false)
+                        {
+                            <span class="badge bg-danger">@ViewBag.tamNgung</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">@ViewBag.chuaBan</span>
+                        }
+                    </td>
+
+                    <td>
+                        <span>
+                            @Html.ActionLink("Sửa", "EditSanPham", new { id = item.idSP }, new { @class = "btn btn-dark" })
+                        </span>
+                        <span>
+                            @Html.ActionLink("Chi tiết", "DetailSanPham", new { id = item.idSP }, new { @class = "btn btn-success" })
+                        </span>
+                        <span>
+                            @Html.ActionLink("Xoá", "DelSanPham", new { id = item.idSP }, new { @class = "btn btn-danger" })
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <div class="d-flex justify-content-center mt-4">
+        @Html.PagedListPager(Model, page => Url.Action("QLSanPham", new { page = page }), new PagedListRenderOptions { LiElementClasses = new string[] { "page-item btn btn-dark rounded mx-2" } })
+    </div>
+
+    <style>
+
+        .page-item > a {
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            --bs-btn-padding-x: 0.75rem;
+            --bs-btn-padding-y: 0.375rem;
+            --bs-btn-font-size: 1rem;
+            --bs-btn-font-weight: 400;
+            --bs-btn-line-height: 1.5;
+            --bs-btn-color: #212529;
+            --bs-btn-bg: transparent;
+            --bs-btn-border-width: 1px;
+            --bs-btn-border-color: transparent;
+            --bs-btn-border-radius: 0.375rem;
+            --bs-btn-hover-border-color: transparent;
+            --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+            --bs-btn-disabled-opacity: 0.65;
+            --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
+            display: inline-block;
+            padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+            font-family: var(--bs-btn-font-family);
+            font-size: var(--bs-btn-font-size);
+            font-weight: var(--bs-btn-font-weight);
+            line-height: var(--bs-btn-line-height);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+            border-radius: var(--bs-btn-border-radius);
+            background-color: var(--bs-btn-bg);
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+    </style>
+</body>
+</html>

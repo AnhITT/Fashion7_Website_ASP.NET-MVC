@@ -1,0 +1,113 @@
+﻿@using Fashion7.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Fashion7.Models.SanPham>
+@{
+    ViewBag.Title = "Sản phẩm - Top";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<html>
+<head>
+    <link href="~/Content/frontawsome/css/all.css" rel="stylesheet" />
+</head>
+
+<body style="background-color:white">
+    <div class="row text-light text-center mt-5 mb-4">
+        <h1 style="font-weight:bold !important; font-size:50px;color:black;">SẢN PHẨM</h1>
+    </div>
+    <div class="row justify-content-center">
+        @foreach (var product in Model)
+        {
+
+            <section style="width:330px !important; " class="d-inline-block">
+                <div class="container py-3 ">
+                    <div class="row d-inline-block">
+                        <a href="/Products/Detail/@product.idSP" class="col text-decoration-none">
+                            <div class="col">
+                                <div class="card text-black" style="height:500px !important; ">
+                                    <img style="height:300px !important; " src="@product.hinhAnhSP"
+                                         class="card-img-top" alt="@product.tenSP" />
+                                    <div class="card-body">
+                                        <div style="height:90px;" class="text-center">
+                                            <h5 class="card-title">@product.tenSP</h5>
+                                            <p class="text-muted">S-X-XXL</p>
+                                        </div>
+                                        <div class="d-flex justify-content-between total font-weight-bold pt-5">
+
+                                            @if (product.sale == null || ViewData["checkSale" + product.idSP] == "true")
+                                            {
+                                                <span>Giá</span><span>@String.Format("{0:0,0}", product.giaSP) VNĐ</span>
+                                            }
+                                            else
+                                            {
+                                                <span>Giá</span><p class="text-muted text-decoration-line-through">@String.Format("{0:0,0}", product.giaSP) VNĐ</p>
+
+                                                <span>@String.Format("{0:0,0}", ViewData[product.idSP]) VNĐ</span>
+
+
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+
+        }
+    </div>
+    <div class="d-flex justify-content-center mt-4">
+        @Html.PagedListPager(Model, page => Url.Action("/top", new { page = page }), new PagedListRenderOptions { LiElementClasses = new string[] { "page-item btn btn-dark rounded mx-2" } })
+    </div>
+    <style>
+        .page-item > a {
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            --bs-btn-padding-x: 0.75rem;
+            --bs-btn-padding-y: 0.375rem;
+            --bs-btn-font-size: 1rem;
+            --bs-btn-font-weight: 400;
+            --bs-btn-line-height: 1.5;
+            --bs-btn-color: #212529;
+            --bs-btn-bg: transparent;
+            --bs-btn-border-width: 1px;
+            --bs-btn-border-color: transparent;
+            --bs-btn-border-radius: 0.375rem;
+            --bs-btn-hover-border-color: transparent;
+            --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+            --bs-btn-disabled-opacity: 0.65;
+            --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
+            display: inline-block;
+            padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+            font-family: var(--bs-btn-font-family);
+            font-size: var(--bs-btn-font-size);
+            font-weight: var(--bs-btn-font-weight);
+            line-height: var(--bs-btn-line-height);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+            border-radius: var(--bs-btn-border-radius);
+            background-color: var(--bs-btn-bg);
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        body {
+            background-image: none !important;
+            background-color: white !important;
+        }
+
+        .bg-opacity-75 {
+            --bs-bg-opacity: 0.90 !important;
+        }
+    </style>
+</body>
+</html>
+

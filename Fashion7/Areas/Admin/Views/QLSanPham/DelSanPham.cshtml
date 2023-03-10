@@ -1,0 +1,83 @@
+﻿@model Fashion7.Models.SanPham
+
+@{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item h5"><a href="../QLSanPham"><i class="uil-cart"></i> Quản lý sản phẩm</a></li>
+            <li class="breadcrumb-item h5">Xoá sản phẩm</li>
+        </ol>
+    </nav>
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHeaderBar.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+   
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width" />
+   
+    <title>DelProduct</title>
+</head>
+<body>
+    <section class="bg-image" <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+                <h2 class="text-uppercase text-center ">xác nhận sản phẩm</h2>
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+                    <div>
+                        <b>Tên sản phẩm:</b>
+                         @Html.DisplayFor(model => model.tenSP)
+
+                    </div>
+                    <div>
+                        <b>Giá sản phẩm:</b>
+                        @String.Format("{0:0,0}", Model.giaSP) VNĐ
+                    </div>
+                    <div>
+                        <b>Số lượng sản phẩm:</b>
+                        @Html.DisplayFor(model => model.soLuongSP)
+                    </div>
+                    <div>
+                        <b>Hình ảnh sản phẩm:</b>
+                        <br />
+                        <img src="@Model.hinhAnhSP" style="width:200px;" />
+                    </div>
+                    <div>
+                        <b>Thông tin sản phẩm:</b>
+                        @Html.DisplayFor(model => model.thongTinSP)
+                    </div>
+                    <div>
+                        <b>Ngày cập nhật:</b>
+                        @String.Format("{0:dd/MM/yyyy}", Model.ngayCapNhat)
+                    </div>
+
+                    <div>
+                        <b>Tên danh mục:</b>
+                        @ViewBag.stt
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <a class="btn btn-dark" href="../QLSanPham"><i class="fa-solid fa-chevron-left"></i> Quay lại</a>
+                        <input type="submit" value="Xoá sản phẩm" class="btn btn-danger m-3" />
+                    </div>
+                }
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+</body>
+
+</html>
+

@@ -1,0 +1,162 @@
+﻿@using Fashion7.Models;
+@using PagedList.Mvc;
+@model PagedList.PagedList<Fashion7.Models.TaiKhoan>
+
+
+@helper Truncate(string input, int length)
+{
+
+    if (input == null)
+    {
+        @input
+    }
+    else if (input.Length < length)
+    {
+        @input
+    }
+    else
+    {
+        @input.Substring(0, length) <text> ...</text>
+    }
+}
+@{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item active h5" aria-current="page"><i class="uil-users-alt"></i> Quản lý tài khoản</li>
+            <li class="breadcrumb-item active h5" aria-current="page"> Tài khoản khách hàng</li>
+        </ol>
+    </nav>
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHeaderBar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>QL Tài khoản KH</title>
+    <link href="~/Content/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/frontawsome/css/all.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#myInput").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="input-group mb-3">
+        <div class="ms-auto mb-lg-0">
+            <input type="text" id="myInput" class="form-control " placeholder="Tìm kiếm tài khoản">
+        </div>
+    </div>
+    <table class="table table-bordered text-center">
+        <thead>
+            <tr>
+                <th>
+                    Tài khoản
+                </th>
+                <th>
+                    Tên chủ tài khoản
+                </th>
+                <th>
+                    Số điện thoại
+                </th>
+                <th>
+                    Email
+                </th>
+                <th>
+                    Chỉnh sửa
+                </th>
+            </tr>
+        </thead>
+        <tbody id="myTable">
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.taiKhoan1)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ten)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sdt)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+
+                    <td>
+                        <span>
+                            @Html.ActionLink("Sửa", "EditTaiKhoanKH", new { id = item.taiKhoan1 }, new { @class = "btn btn-dark" })
+                        </span>
+                        <span>
+                            @Html.ActionLink("Chi tiết", "DetailTaiKhoanKH", new { id = item.taiKhoan1 }, new { @class = "btn btn-success" })
+                        </span>
+                        <span>
+                            @Html.ActionLink("Xoá", "DelTaiKhoanKH", new { id = item.taiKhoan1 }, new { @class = "btn btn-danger" })
+                        </span>
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+    <div class="d-flex justify-content-center mt-4">
+        @Html.PagedListPager(Model, page => Url.Action("QLTaiKhoanKH", new { page = page }), new PagedListRenderOptions { LiElementClasses = new string[] { "page-item btn btn-dark rounded mx-2" } })
+    </div>
+    <style>
+
+        .page-item > a {
+            text-decoration: none;
+            font-size: 20px;
+            color: white;
+            --bs-btn-padding-x: 0.75rem;
+            --bs-btn-padding-y: 0.375rem;
+            --bs-btn-font-size: 1rem;
+            --bs-btn-font-weight: 400;
+            --bs-btn-line-height: 1.5;
+            --bs-btn-color: #212529;
+            --bs-btn-bg: transparent;
+            --bs-btn-border-width: 1px;
+            --bs-btn-border-color: transparent;
+            --bs-btn-border-radius: 0.375rem;
+            --bs-btn-hover-border-color: transparent;
+            --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
+            --bs-btn-disabled-opacity: 0.65;
+            --bs-btn-focus-box-shadow: 0 0 0 0.25rem rgba(var(--bs-btn-focus-shadow-rgb), .5);
+            display: inline-block;
+            padding: var(--bs-btn-padding-y) var(--bs-btn-padding-x);
+            font-family: var(--bs-btn-font-family);
+            font-size: var(--bs-btn-font-size);
+            font-weight: var(--bs-btn-font-weight);
+            line-height: var(--bs-btn-line-height);
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            border: var(--bs-btn-border-width) solid var(--bs-btn-border-color);
+            border-radius: var(--bs-btn-border-radius);
+            background-color: var(--bs-btn-bg);
+            transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+    </style>
+</body>
+</html>
+
+
+
+

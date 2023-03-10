@@ -1,0 +1,80 @@
+﻿@{
+    ViewBag.Title = "Đăng nhập";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<html>
+<head>
+    <link href="~/Content/css/site.css" rel="stylesheet" />
+    <link href="~/Content/frontawsome/css/all.css" rel="stylesheet" />
+    <script src="~/Content/frontawsome/js/all.js"></script>
+    <script src="~/Content/frontawsome/js/solid.js"></script>
+    <link href="~/Content/frontawsome/css/solid.css" rel="stylesheet" />
+</head>
+<body>
+    <section class="vh-100" style="background-color: #000000a6;">
+        <div class="container py-5 h-50">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col col-xl-10">
+                    <div class="card" style="border-radius: 1rem;">
+                        <div class="row g-0">
+                            <div class="col-md-6 col-lg-5 d-none d-md-block">
+                                <img src="https://4kwallpapers.com/images/walls/thumbs_2t/8324.png"
+                                     alt="login form" class="img-fluid h-100 w-auto" style="border-radius: 1rem 0 0 1rem;" />
+                            </div>
+                            <div class="col-md-6 col-lg-7 d-flex align-items-center">
+                                <div class="card-body p-4 p-lg-5 text-black">
+                                    @using (Html.BeginForm())
+                                    {
+                                        <form>
+                                            @Html.ValidationSummary(true)
+
+                                            <div class="d-flex justify-content-center mb-3 pb-1">
+                                                <span class="h1 fw-bold mb-0" style="font-family:Lobster">f7</span>
+                                            </div>
+                                            <h5 class="d-flex justify-content-center mb-3 pb-3" style="letter-spacing: 1px;">ĐĂNG NHẬP</h5>
+
+                                            <div class="form-outline mb-3">
+                                                <span class="text-danger">
+                                                    @ViewData["checkTK"]
+                                                    @ViewData["Loi1"]
+                                                    @ViewData["Loi"]
+                                                </span>
+                                                <div class="form-floating mb-3" for="form2Example17">
+                                                    <input type="text" name="TenDN" class="form-control form-control-lg" id="floatingInput" placeholder="text">
+                                                    <label for="floatingInput">Tài khoản</label>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-outline mb-3">
+                                                <span class="text-danger">
+                                                    @ViewBag.ThongBao
+                                                    @ViewData["Loi2"]
+                                                </span>
+                                                <div class="form-floating mb-3" for="form2Example17">
+                                                    <input type="password" name="MatKhau" class="form-control form-control-lg" id="floatingPassword" placeholder="password">
+                                                    <label for="floatingInput">Mật khẩu</label>
+                                                </div>
+                                            </div>
+                                            <div class="d-flex justify-content-center pt-1 mb-4">
+                                                <input type="Submit" value="Đăng nhập" <button class="btn btn-dark btn-lg btn-block" type="button"> </button>
+                                            </div>
+
+                                            <a class="d-flex justify-content-center small text-muted" href="#!">Quên mật khẩu?</a>
+                                            <p class="d-flex justify-content-center mb-6 pb-lg-2 mt-2" style="color: #393f81;">
+                                                Bạn chưa có tài khoản?  <a href="~/User/DangKy"
+                                                                           style="color: #393f81;"> Đăng ký ngay</a>
+                                            </p>
+
+                                        </form>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

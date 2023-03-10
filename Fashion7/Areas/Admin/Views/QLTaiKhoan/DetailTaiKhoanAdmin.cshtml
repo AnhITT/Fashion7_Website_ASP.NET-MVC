@@ -1,0 +1,108 @@
+﻿@model Fashion7.Models.TaiKhoan
+@{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item h5"><a href="../QLTaiKhoanAdmin"><i class="uil-users-alt"></i> Tài khoản hệ thống</a></li>
+            <li class="breadcrumb-item h5">Thông tin chi tiết tài khoản</li>
+        </ol>
+    </nav>
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHeaderBar.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+   
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width" />
+   
+    <title>Thông tin tài khoản</title>
+</head>
+<body>
+    <section class="bg-image" <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center">
+      <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+        <div class="card" style="border-radius: 15px;">
+            <div class="card-body p-5">
+                <h2 class="text-uppercase text-center ">Thông tin tài khoản</h2>
+                @using (Html.BeginForm())
+                {
+                    @Html.ValidationSummary(true)
+                    <div>
+                        <b>Tài khoản:</b>
+                        @Html.DisplayFor(model => model.taiKhoan1)
+                    </div>
+
+                    <div>
+                        <b>Tên chủ tài khoản: </b>
+                        @Html.DisplayFor(model => model.ten)
+                    </div>
+
+                    <div>
+                        <b>Giới tính:</b> @ViewBag.gt
+                    </div>
+                    <div>
+                        <b>Ngày sinh</b>
+                        @Html.DisplayFor(model => model.ngaySinh)
+                    </div>
+                    <div>
+                        <b>Số điện thoại: </b>
+                        @Html.DisplayFor(model => model.sdt)
+                    </div>
+                    <div>
+                        <b>Email: </b>
+                        @Html.DisplayFor(model => model.email)
+                    </div>
+
+                    <div>
+                        <b>Địa chỉ: </b>
+                        @Html.DisplayFor(model => model.diaChi)
+                    </div>
+                    <div>
+                        <b>Chức vụ: </b>
+                        @Html.DisplayFor(model => model.TaiKhoanAdmin.chucVu)
+                    </div>
+                    <div>
+                        <b>Lương: </b>
+                        @Html.DisplayFor(model => model.TaiKhoanAdmin.luong)
+                    </div>
+                    <div>
+                        <b>Mã quyền: </b>
+                        @Html.DisplayFor(model => model.PhanQuyen.maQuyen)
+
+                    </div>
+                    <div>
+                        <b>Tên quyền: </b>
+                        @Html.DisplayFor(model => model.PhanQuyen.tenQuyen)
+                    </div>
+
+                    <div class="d-flex justify-content-center align-items-center">
+                        <a class="btn btn-dark" href="../QLTaiKhoanAdmin">
+                            <i class="fa-solid fa-chevron-left"></i> Quay
+                            lại
+                        </a>
+                        <div class="btn btn-success m-3">
+                            @Html.ActionLink("Chỉnh sửa", "EditTaiKhoanAdmin", new { id = Model.taiKhoan1}, new { @style = "color:white;" })
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+</section>
+
+</body>
+
+</html>
+
+
+
+

@@ -1,0 +1,108 @@
+﻿@model Fashion7.Models.KhuyenMai
+@{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item h5"><a href="QLSale"><i class="uil-dollar-sign-alt"></i> Quản lý sale</a></li>
+            <li class="breadcrumb-item h5">Thêm khuyến mãi</li>
+        </ol>
+    </nav>
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHeaderBar.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+   
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width" />
+    <title>AddSale</title>
+  
+    <script src="~/tinymce/js/tinymce/tinymce.min.js"></script>
+    <script>tinymce.init({ selector: 'textarea' });</script>
+</head>
+<body>
+    <section class="bg-image"
+      <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+          <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+              <div class="card" style="border-radius: 15px;">
+                  <div class="card-body p-5">
+                      <h2 class="text-uppercase text-center ">Thêm khuyến mãi</h2>
+                      @using (Html.BeginForm())
+                      {
+                          @Html.ValidationSummary(true)
+                          <div>
+                              Nhập mã khuyến mãi
+                              <div>
+                                  @Html.EditorFor(model => model.idKM, new { htmlAttributes = new { @class = "form-control" } })
+                                  @Html.ValidationMessageFor(model => model.idKM, "", new { @class = "text-danger" })
+                              </div>
+                          </div>
+                          <div>
+                              Nhập tên khuyến mãi
+                              <div>
+                                  @Html.EditorFor(model => model.tenKM, new { htmlAttributes = new { @class = "form-control" } })
+                                  @Html.ValidationMessageFor(model => model.tenKM, "", new { @class = "text-danger" })
+                              </div>
+                          </div>
+
+                          <div>
+                              <div class="mt-2">
+                                  Nhập thông tin khuyến mãi
+                                  @Html.EditorFor(model => model.moTaKM, new { htmlAttributes = new { @class = "form-control" } })
+                                  @Html.ValidationMessageFor(model => model.moTaKM, "", new { @class = "text-danger" })
+                              </div>
+                          </div>
+                          <div>
+                              Nhập giá giảm
+                              <div>
+                                  @Html.EditorFor(model => model.donGia, new { htmlAttributes = new { @class = "form-control" } })
+                                  @Html.ValidationMessageFor(model => model.donGia, "", new { @class = "text-danger" })
+                              </div>
+                          </div>
+                          <div>
+                              Nhập số lượng
+                              <div>
+                                  @Html.EditorFor(model => model.soLuong, new { htmlAttributes = new { @class = "form-control" } })
+                                  @Html.ValidationMessageFor(model => model.soLuong, "", new { @class = "text-danger" })
+                              </div>
+                          </div>
+                          <div>
+                              Chiết khấu
+                              <div>
+                                  @Html.EditorFor(model => model.chietKhau, new { htmlAttributes = new { @class = "form-control" } })
+                                  @Html.ValidationMessageFor(model => model.chietKhau, "", new { @class = "text-danger" })
+                              </div>
+                          </div>
+                          <div class="mt-2">
+                              Ngày bắt đầu
+                              <input type="date" name="dateStart" class="ml-2" />
+                          </div>
+                          <div class="mt-2">
+                              Ngày kết thúc
+                              <input type="date" name="dateEnd" class="ml-2" />
+                          </div>
+                          <div class="d-flex justify-content-center align-items-center">
+                              <a class="btn btn-dark" href="QLSale"><i class="fa-solid fa-chevron-left"></i> Quay lại</a>
+                              <input type="submit" value="Thêm khuyến mãi" class="btn btn-success m-3" />
+                          </div>
+                      }
+
+                  </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
+
+
+
+
+

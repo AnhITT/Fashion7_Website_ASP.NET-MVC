@@ -1,0 +1,83 @@
+﻿
+
+@model Fashion7.Models.TaiKhoan
+
+@{
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item h5"><a href="../InfoAdmin"><i class="uil-invoice"></i> Thông tin cá nhân</a></li>
+            <li class="breadcrumb-item h5">Đổi mật khẩu</li>
+        </ol>
+    </nav>
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutHeaderBar.cshtml";
+
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+          integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/css/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />
+
+    <title>Chỉnh sửa thông tin admin</title>
+</head>
+
+<body>
+    <section class="bg-image" <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+    <div class="container h-100">
+      <div class="row d-flex justify-content-center align-items-center">
+        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+          <div class="card" style="border-radius: 15px;">
+              <div class="card-body p-5">
+                  <h2 class="text-uppercase text-center ">Đổi mật khẩu</h2>
+                  @using (Html.BeginForm())
+                  {
+                      @Html.ValidationSummary(true)
+
+                      <div>
+                          Mật khẩu cũ
+                          <input type="password" name="MatKhauCu" class="form-control" placeholder="Nhập mật khẩu cũ">
+                          <span class="text-danger">
+                              @ViewData["Loi1"]
+                          </span>
+                      </div>
+                      <div>
+                          Mật khẩu mới
+                          <input type="password" name="MatKhauMoi1" class="form-control" placeholder="Nhập mật khẩu mới">
+                          <span class="text-danger">
+                              @ViewData["Loi2"]
+                          </span>
+                      </div>
+                      <div>
+                          Nhập lại mật khẩu
+                          <input type="password" name="MatKhauMoi2" class="form-control" placeholder="Nhập lại mật khẩu">
+                          <span class="text-danger">
+                              @ViewData["Loimk2"]
+                          </span>
+                      </div>
+
+                      <div class="d-flex justify-content-center align-items-center">
+                          <a class="btn btn-dark" href="../InfoAdmin"><i class="fa-solid fa-chevron-left"></i> Quay lại</a>
+                          <input type="submit" value="Lưu thông tin" class="btn btn-success m-3" />
+                      </div>
+                  }
+
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+</body>
+
+</html>
+
+

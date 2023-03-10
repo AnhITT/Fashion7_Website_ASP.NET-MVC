@@ -1,0 +1,94 @@
+﻿@model Fashion7.Models.TaiKhoan
+@using Fashion7.Models;
+@{
+    ViewBag.Title = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+<html>
+<div class="row text-light text-center mt-5 mb-4">
+    <link href="~/Content/frontawsome/css/all.css" rel="stylesheet" />
+    <link href="~/Content/frontawsome/css/fontawesome.css" rel="stylesheet" />
+    <script src="~/Content/frontawsome/js/fontawesome.js"></script>
+    <script src="~/Content/frontawsome/js/all.js"></script>
+    <h2 style="font-weight:bold !important; font-size:50px;color:black;padding:10px">THÔNG TIN CÁ NHÂN</h2>
+
+    <section class="vh-100 h-100 bg-image text-black"
+             style=" background-color: white; height: 1000px !important">
+        <div class="mask d-flex align-items-center gradient-custom-3">
+            <div class="container">
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                        <div class="card" style="border-radius: 15px;">
+                            <div class="card-body p-5">
+
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.ValidationSummary(true)
+                                    <form>
+
+                                        <div class="form-outline mb-3">
+                                            <div>
+                                                <b>Tài khoản:</b>
+                                                @Html.DisplayFor(model => model.taiKhoan1)
+                                            </div>
+                                            <div>
+                                                <b>Tên chủ tài khoản: </b>
+                                                @Html.DisplayFor(model => model.ten)
+                                            </div>
+
+                                            <div>
+                                                <b>Giới tính:</b> @ViewBag.gt
+                                            </div>
+                                            <div>
+                                                <b>Ngày sinh</b>
+                                                @Html.DisplayFor(model => model.ngaySinh)
+                                            </div>
+                                            <div>
+                                                <b>Số điện thoại: </b>
+                                                @Html.DisplayFor(model => model.sdt)
+                                            </div>
+                                            <div>
+                                                <b>Email: </b>
+                                                @Html.DisplayFor(model => model.email)
+                                            </div>
+
+                                            <div>
+                                                <b>Địa chỉ: </b>
+                                                @Html.DisplayFor(model => model.diaChi)
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div class="d-flex justify-content-center align-items-center">
+                                        <a class="btn btn-dark m-3" href="../Products">
+                                            <i class="fa-solid fa-chevron-left"></i> Quay
+                                            lại
+                                        </a>
+                                        <div class="btn btn-success m-3">
+                                            @Html.ActionLink("Chỉnh sửa", "EditTaiKhoan", new { id = Model.taiKhoan1 }, new { @style = "color:white;" })
+                                        </div>
+                                        <div class="btn btn-danger m-3">
+                                            @Html.ActionLink("Đổi mật khẩu", "DoiMatKhauUser", new { id = Model.taiKhoan1 }, new { @style = "color:white;" })
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        body {
+            background-color: white !important;
+            background-image: none !important;
+        }
+
+        a {
+            text-decoration: none !important;
+        }
+    </style>
+    }
+
+</html>
